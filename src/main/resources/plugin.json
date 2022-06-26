@@ -1,0 +1,11 @@
+{
+	"name": "Sequence",
+	"author": "ParadoxFinder",
+	"version": "0.1.0",
+	"minVersion": "1.13.17 beta 108",
+	"supportedVersion": "1.13.17 beta 108",
+	"features": [
+		"eu.paradox.darkbot.SequenceBehavior",
+		"eu.paradox.darkbot.SequenceModule"
+	]
+}
