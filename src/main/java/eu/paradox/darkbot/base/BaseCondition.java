@@ -22,6 +22,30 @@ public abstract class BaseCondition {
     public BaseStep nextStep;
 
     /**
+     * Gets an double parameter.
+     *
+     * @param name Name of the parameter to get.
+     * @return The double value of the parameter.
+     */
+    public double getParameterDouble(String name) {
+        return (Double) this.parameters.get(name);
+    }
+
+    /**
+     * Gets an integer parameter.
+     *
+     * @param name Name of the parameter to get.
+     * @return The integer value of the parameter.
+     */
+    public int getParameterInt(String name) {
+        try {
+            return (int) Math.floor(this.getParameterDouble(name));
+        } catch (RuntimeException e) {
+            return (Integer) this.parameters.get(name);
+        }
+    }
+
+    /**
      * Parses the condition and the children.
      *
      * @param context Context for creating other steps.

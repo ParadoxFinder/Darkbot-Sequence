@@ -23,9 +23,9 @@ public class Wait extends BaseStep {
         }
 
         try {
-            this.requiredDelay = (double) this.parameters.get("delay") * 1000d;
+            this.requiredDelay = this.getParameterDouble("delay") * 1000d;
         } catch (ClassCastException e) {
-            this.requiredDelay = (int) this.parameters.get("delay") * 1000d;
+            this.requiredDelay = this.getParameterInt("delay") * 1000d;
         }
     }
 

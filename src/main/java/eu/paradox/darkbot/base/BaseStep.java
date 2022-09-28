@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 public abstract class BaseStep {
-
-
     /**
      * Context for running steps.
      */
@@ -30,6 +28,30 @@ public abstract class BaseStep {
      * Next steps to run if a condition is met.
      */
     public List<BaseCondition> conditionSteps = new ArrayList<>();
+
+    /**
+     * Gets an double parameter.
+     *
+     * @param name Name of the parameter to get.
+     * @return The double value of the parameter.
+     */
+    public double getParameterDouble(String name) {
+        return (Double) this.parameters.get(name);
+    }
+
+    /**
+     * Gets an integer parameter.
+     *
+     * @param name Name of the parameter to get.
+     * @return The integer value of the parameter.
+     */
+    public int getParameterInt(String name) {
+        try {
+            return (int) Math.floor(this.getParameterDouble(name));
+        } catch (RuntimeException e) {
+            return (Integer) this.parameters.get(name);
+        }
+    }
 
     /**
      * Parses the entry and the children.

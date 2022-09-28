@@ -23,11 +23,11 @@ public class GoToPosition extends BaseStep {
         if (!this.parameters.containsKey("x")) {
             throw new RuntimeException("Missing parameter \"x\".");
         }
-        this.x = (double) this.parameters.get("x");
+        this.x = this.getParameterDouble("x");
         if (!this.parameters.containsKey("y")) {
             throw new RuntimeException("Missing parameter \"y\".");
         }
-        this.y = (double) this.parameters.get("y");
+        this.y = this.getParameterDouble("y");
     }
 
     /**

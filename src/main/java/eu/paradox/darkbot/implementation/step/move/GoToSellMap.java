@@ -1,6 +1,8 @@
 package eu.paradox.darkbot.implementation.step.move;
 
 import eu.darkbot.api.game.other.EntityInfo;
+import eu.darkbot.api.managers.OreAPI;
+import eu.paradox.darkbot.base.StepContext;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -36,6 +38,11 @@ public class GoToSellMap extends GoToMap {
     private List<String> sellMapOptions = new ArrayList<>();
 
     /**
+     * Minimum amount of Palladium to override to selling at 5-2.
+     */
+    private int minimumPalladiumToOverride = 15;
+
+    /**
      * Handles the step being parsed.
      */
     @Override
@@ -63,6 +70,9 @@ public class GoToSellMap extends GoToMap {
 
         // Store the options.
         this.sellMapOptions = sellMapOptions;
+        if (this.parameters.containsKey("minimumPalladiumToOverride")) {
+            this.minimumPalladiumToOverride = this.getParameterInt("minimumPalladiumToOverride");
+        }
     }
 
     /**
@@ -90,6 +100,10 @@ public class GoToSellMap extends GoToMap {
             this.mapName = "2-1";
         } else if (this.sellMapOptions.contains("3-1")) {
             this.mapName = "3-1";
+        }
+        if (!this.mapName.equals("5-2") && this.sellMapOptions.contains("5-2") && this.context.getMain().guiManager.oreTrade.getAmount(OreAPI.Ore.PALLADIUM) >= this.minimumPalladiumToOverride) {
+            this.log(StepContext.LogLevel.INFO, "Overriding sell map to 5-2 to sell " + this.context.getMain().guiManager.oreTrade.getAmount(OreAPI.Ore.PALLADIUM) + " Palladium.");
+            this.mapName = "5-2";
         }
 
         // Prepare going to the map.

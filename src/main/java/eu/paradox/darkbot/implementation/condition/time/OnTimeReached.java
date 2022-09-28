@@ -29,11 +29,11 @@ public class OnTimeReached extends BaseCondition {
         if (!this.parameters.containsKey("hour")) {
             throw new RuntimeException("Missing parameter \"hour\".");
         }
-        this.hour = (int) (double) this.parameters.get("hour");
+        this.hour = this.getParameterInt("hour");
         if (!this.parameters.containsKey("minute")) {
             throw new RuntimeException("Missing parameter \"minute\".");
         }
-        this.minute = (int) (double) this.parameters.get("minute");
+        this.minute = this.getParameterInt("minute");
     }
 
     /**
